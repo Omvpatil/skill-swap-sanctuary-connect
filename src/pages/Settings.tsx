@@ -3,9 +3,23 @@ import { MainLayout } from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bell, EyeOff, Lock, User, Palette, Trash2, LogOut } from "lucide-react";
+import { Bell, EyeOff, Lock, User, Palette, Trash2, LogOut, Moon, Sun, MonitorSmartphone } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useToast } from "@/components/ui/use-toast";
 
 const Settings = () => {
+  const { theme, setTheme } = useTheme();
+  const { toast } = useToast();
+
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
+    setTheme(newTheme);
+    toast({
+      title: "Theme Changed",
+      description: `Theme set to ${newTheme}.`,
+      duration: 2000,
+    });
+  };
+
   return (
     <MainLayout>
       <div className="space-y-6 max-w-3xl mx-auto">
@@ -151,18 +165,36 @@ const Settings = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-3 gap-4">
-              <Button variant="outline" className="h-auto flex flex-col p-4 justify-center items-center rounded-lg">
-                <div className="h-20 w-full bg-background border rounded-md mb-2"></div>
+              <Button 
+                variant={theme === 'light' ? "default" : "outline"} 
+                className="h-auto flex flex-col p-4 justify-center items-center rounded-lg"
+                onClick={() => handleThemeChange('light')}
+              >
+                <div className="h-20 w-full bg-background border rounded-md mb-2 flex items-center justify-center">
+                  <Sun className="h-8 w-8" />
+                </div>
                 <span>Light</span>
               </Button>
               
-              <Button variant="outline" className="h-auto flex flex-col p-4 justify-center items-center rounded-lg">
-                <div className="h-20 w-full bg-slate-800 border border-slate-700 rounded-md mb-2"></div>
+              <Button 
+                variant={theme === 'dark' ? "default" : "outline"} 
+                className="h-auto flex flex-col p-4 justify-center items-center rounded-lg"
+                onClick={() => handleThemeChange('dark')}
+              >
+                <div className="h-20 w-full bg-slate-800 border border-slate-700 rounded-md mb-2 flex items-center justify-center">
+                  <Moon className="h-8 w-8 text-white" />
+                </div>
                 <span>Dark</span>
               </Button>
               
-              <Button className="h-auto flex flex-col p-4 justify-center items-center rounded-lg">
-                <div className="h-20 w-full bg-gradient-to-b from-background to-slate-800 border rounded-md mb-2"></div>
+              <Button 
+                variant={theme === 'system' ? "default" : "outline"} 
+                className="h-auto flex flex-col p-4 justify-center items-center rounded-lg"
+                onClick={() => handleThemeChange('system')}
+              >
+                <div className="h-20 w-full bg-gradient-to-b from-background to-slate-800 border rounded-md mb-2 flex items-center justify-center">
+                  <MonitorSmartphone className="h-8 w-8" />
+                </div>
                 <span>System</span>
               </Button>
             </div>
