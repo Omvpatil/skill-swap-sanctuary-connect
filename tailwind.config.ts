@@ -61,7 +61,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        skill: {
+          purple: {
+            light: '#E5DEFF',
+            DEFAULT: '#9b87f5',
+            medium: '#7E69AB',
+            dark: '#6E59A5',
+          },
+          blue: {
+            light: '#D3E4FD',
+            DEFAULT: '#0EA5E9',
+            dark: '#0284c7',
+          },
+        },
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
