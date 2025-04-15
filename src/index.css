@@ -6,81 +6,82 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 250 14% 20%;
+    --foreground: 0 0% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 250 14% 20%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 250 14% 20%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 257 80% 74%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 243 31% 54%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 260 40% 96.1%;
-    --muted-foreground: 237 10% 47%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 196 83% 49%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 257 80% 74%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 9%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 260 40% 98%;
-    --sidebar-foreground: 250 14% 20%;
-    --sidebar-primary: 257 80% 74%;
+    --sidebar-background: 0 0% 97%;
+    --sidebar-foreground: 0 0% 9%;
+    --sidebar-primary: 0 0% 9%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 243 31% 54%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 260 30% 92%;
-    --sidebar-ring: 257 80% 74%;
+    --sidebar-accent: 0 0% 92%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 0 0% 9%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 83%;
+    
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 0 0% 96%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 0% 83%;
   }
 }
 
@@ -96,19 +97,19 @@
 
 @layer utilities {
   .gradient-heading {
-    @apply bg-gradient-to-r from-skill-purple to-skill-blue bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-skill-purple/20 hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1;
   }
   
   .skill-card {
-    @apply bg-white rounded-xl shadow-md p-5 card-hover border border-skill-purple-light/50;
+    @apply bg-white rounded-xl shadow-md p-5 card-hover border border-gray-200;
   }
   
   .avatar-anonymous {
-    @apply bg-gradient-to-r from-black/80 to-skill-blue/80 text-white;
+    @apply bg-black text-white;
   }
   
   /* Android-specific improvements */
@@ -139,6 +140,27 @@
     
     .android-ripple:active::after {
       @apply opacity-100;
+    }
+    
+    /* Android-specific messaging improvements */
+    .android-message-input {
+      @apply py-3 px-4 rounded-full;
+    }
+    
+    .android-message-bubble {
+      @apply max-w-[85%] rounded-2xl px-4 py-3;
+    }
+    
+    .android-message-sent {
+      @apply android-message-bubble bg-black text-white ml-auto;
+    }
+    
+    .android-message-received {
+      @apply android-message-bubble bg-gray-100 mr-auto;
+    }
+    
+    .android-bottom-bar {
+      @apply fixed bottom-0 left-0 right-0 bg-background border-t py-2 px-4 flex items-center gap-2;
     }
   }
 }

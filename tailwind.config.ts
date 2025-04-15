@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,15 +65,15 @@ export default {
 				},
         skill: {
           purple: {
-            light: '#E5DEFF',
-            DEFAULT: '#9b87f5',
-            medium: '#7E69AB',
-            dark: '#6E59A5',
+            light: '#eeeeee',
+            DEFAULT: '#000000',
+            medium: '#333333',
+            dark: '#222222',
           },
           blue: {
-            light: '#D3E4FD',
-            DEFAULT: '#0EA5E9',
-            dark: '#0284c7',
+            light: '#f5f5f5',
+            DEFAULT: '#333333',
+            dark: '#222222',
           },
         },
 			},

@@ -6,7 +6,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Search } from "lucide-react";
+import { Search, Plus, MessageSquare, ArrowLeft } from "lucide-react";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 const conversations = [
   {
@@ -113,17 +114,154 @@ const conversations = [
 const Messages = () => {
   const [selectedConversation, setSelectedConversation] = useState(conversations[0]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showConversationList, setShowConversationList] = useState(true);
+  const isAndroid = useMediaQuery("(max-width: 768px)");
   
   const filteredConversations = conversations.filter(conversation => 
     conversation.contactName.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
+  const handleConversationSelect = (conversation: typeof conversations[0]) => {
+    setSelectedConversation(conversation);
+    if (isAndroid) {
+      setShowConversationList(false);
+    }
+  };
+  
+  const handleBackToList = () => {
+    setShowConversationList(true);
+  };
+  
+  if (isAndroid) {
+    // Android-specific layout (one view at a time)
+    return (
+      <MainLayout>
+        {showConversationList ? (
+          // Conversation List View for Android
+          <div className="flex flex-col h-[calc(100vh-8rem)]">
+            <div className="p-4 border-b bg-white shadow-sm">
+              <div className="flex justify-between items-center mb-2">
+                <h1 className="text-lg font-semibold">Messages</h1>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className="android-ripple rounded-full"
+                >
+                  <Plus className="h-5 w-5" />
+                </Button>
+              </div>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <input
+                  type="text"
+                  placeholder="Search conversations..."
+                  className="w-full pl-10 pr-4 py-3 bg-gray-100 rounded-full text-sm"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+            </div>
+            
+            <div className="overflow-y-auto flex-1 bg-gray-50">
+              {filteredConversations.map(conversation => (
+                <div 
+                  key={conversation.id}
+                  className="border-b p-4 active:bg-gray-100 cursor-pointer android-ripple"
+                  onClick={() => handleConversationSelect(conversation)}
+                >
+                  <div className="flex items-center gap-3">
+                    <Avatar className={conversation.isAnonymous ? "avatar-anonymous" : "bg-muted"}>
+                      <AvatarFallback>{conversation.contactInitials}</AvatarFallback>
+                    </Avatar>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start">
+                        <span className="font-medium truncate">
+                          {conversation.contactName}
+                          {conversation.isAnonymous && (
+                            <Badge variant="outline" className="ml-2 text-[10px]">Anonymous</Badge>
+                          )}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {conversation.timestamp}
+                        </span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center mt-1">
+                        <p className="text-sm text-muted-foreground truncate">
+                          {conversation.lastMessage}
+                        </p>
+                        {conversation.unread && (
+                          <Badge className="h-2 w-2 rounded-full p-0 bg-black" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              
+              {filteredConversations.length === 0 && (
+                <div className="text-center p-8 text-muted-foreground">
+                  <MessageSquare className="h-12 w-12 mx-auto mb-2 text-gray-300" />
+                  <p>No conversations found</p>
+                </div>
+              )}
+            </div>
+            
+            <div className="p-4 border-t bg-white shadow-lg">
+              <Button className="w-full rounded-full android-ripple">
+                <Plus className="h-4 w-4 mr-2" /> 
+                Start New Conversation
+              </Button>
+            </div>
+          </div>
+        ) : (
+          // Chat Interface View for Android
+          <div className="h-[calc(100vh-8rem)] flex flex-col">
+            <div className="bg-card shadow-sm flex items-center p-2 mb-1">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={handleBackToList}
+                className="mr-2 android-ripple"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex-1">
+                {selectedConversation && (
+                  <ChatInterface 
+                    contactName={selectedConversation.contactName}
+                    contactInitials={selectedConversation.contactInitials}
+                    isAnonymous={selectedConversation.isAnonymous}
+                    messages={selectedConversation.messages}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </MainLayout>
+    );
+  }
+  
+  // Desktop layout (side-by-side)
   return (
     <MainLayout>
       <div className="flex h-[calc(100vh-8rem)]">
         {/* Conversation List */}
-        <div className="w-1/3 border-r h-full flex flex-col">
+        <div className="w-1/3 border-r h-full flex flex-col bg-white">
           <div className="p-4 border-b">
+            <div className="flex justify-between items-center mb-3">
+              <h1 className="text-lg font-semibold">Messages</h1>
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="android-ripple"
+              >
+                <Plus className="h-4 w-4 mr-1" /> 
+                New
+              </Button>
+            </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <input
@@ -168,7 +306,7 @@ const Messages = () => {
                         {conversation.lastMessage}
                       </p>
                       {conversation.unread && (
-                        <Badge className="h-2 w-2 rounded-full p-0" />
+                        <Badge className="h-2 w-2 rounded-full p-0 bg-black" />
                       )}
                     </div>
                   </div>

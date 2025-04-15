@@ -19,7 +19,7 @@ const badgeVariants = cva(
         skill:
           "border-transparent bg-black text-white",
         achievement:
-          "border-transparent bg-skill-blue text-white",
+          "border-transparent bg-black text-white",
       },
       size: {
         default: "px-2.5 py-0.5 text-xs",
