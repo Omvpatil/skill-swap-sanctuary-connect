@@ -18,10 +18,10 @@ interface AchievementCardProps {
 
 export function AchievementCard({ achievement }: AchievementCardProps) {
   const levelColors = {
-    bronze: "bg-amber-600",
-    silver: "bg-gray-400",
-    gold: "bg-yellow-400",
-    platinum: "bg-gradient-to-r from-indigo-500 to-purple-500"
+    bronze: "bg-mono-medium-gray",
+    silver: "bg-mono-light-gray border border-mono-medium-gray",
+    gold: "bg-mono-black",
+    platinum: "bg-mono-black border border-mono-medium-gray"
   };
   
   const levelIcons = {
@@ -32,14 +32,14 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
   };
   
   return (
-    <Card className={`overflow-hidden ${achievement.completed ? "border-skill-purple border-2" : ""}`}>
+    <Card className={`overflow-hidden ${achievement.completed ? "border-mono-black border-2 dark:border-mono-white" : ""}`}>
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
           <CardTitle className="text-lg flex items-center gap-2">
             {achievement.title}
-            {achievement.completed && <Trophy className="h-4 w-4 text-skill-purple" />}
+            {achievement.completed && <Trophy className="h-4 w-4 text-mono-black dark:text-mono-white" />}
           </CardTitle>
-          <Badge className={`${levelColors[achievement.level]} text-white`}>
+          <Badge className={`${levelColors[achievement.level]} ${achievement.level === "silver" ? "text-mono-black" : "text-mono-white"}`}>
             <div className="flex items-center gap-1">
               {levelIcons[achievement.level]}
               <span>{achievement.level.charAt(0).toUpperCase() + achievement.level.slice(1)}</span>
@@ -57,9 +57,9 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
           <Badge variant="outline">{achievement.points} Points</Badge>
         </div>
         
-        <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+        <div className="h-2 w-full bg-mono-light-gray rounded-full overflow-hidden dark:bg-mono-medium-gray">
           <div 
-            className={`h-full ${achievement.completed ? "bg-skill-purple" : "bg-skill-blue"}`}
+            className={`h-full ${achievement.completed ? "bg-mono-black dark:bg-mono-white" : "bg-mono-dark-gray"}`}
             style={{ width: `${(achievement.progressValue / achievement.progressMax) * 100}%` }}
           />
         </div>

@@ -63,19 +63,26 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-        skill: {
-          purple: {
-            light: '#eeeeee',
-            DEFAULT: '#000000',
-            medium: '#333333',
-            dark: '#222222',
-          },
-          blue: {
-            light: '#f5f5f5',
-            DEFAULT: '#333333',
-            dark: '#222222',
-          },
-        },
+				skill: {
+					purple: {
+						light: '#F5F5F5',
+						DEFAULT: '#000000',
+						medium: '#333333',
+						dark: '#222222',
+					},
+					blue: {
+						light: '#F5F5F5',
+						DEFAULT: '#333333',
+						dark: '#222222',
+					},
+				},
+				mono: {
+					black: '#000000',
+					white: '#FFFFFF',
+					'dark-gray': '#222222',
+					'medium-gray': '#8A898C',
+					'light-gray': '#F1F1F1',
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

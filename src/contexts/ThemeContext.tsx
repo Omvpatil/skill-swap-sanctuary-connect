@@ -6,6 +6,7 @@ type Theme = 'light' | 'dark' | 'system';
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
+  resolvedTheme: 'light' | 'dark';
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -16,6 +17,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const savedTheme = localStorage.getItem('theme') as Theme;
     return savedTheme || 'system';
   });
+  
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  );
 
   useEffect(() => {
     // Save theme preference to localStorage
@@ -25,12 +30,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     
+    let newResolvedTheme: 'light' | 'dark';
+    
     if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.classList.add(systemTheme);
+      newResolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.classList.add(newResolvedTheme);
     } else {
+      newResolvedTheme = theme as 'light' | 'dark';
       root.classList.add(theme);
     }
+    
+    setResolvedTheme(newResolvedTheme);
+    
   }, [theme]);
 
   // Set up listener for system theme changes
@@ -39,9 +50,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     const handleChange = () => {
       if (theme === 'system') {
+        const newResolvedTheme = mediaQuery.matches ? 'dark' : 'light';
         const root = window.document.documentElement;
         root.classList.remove('light', 'dark');
-        root.classList.add(mediaQuery.matches ? 'dark' : 'light');
+        root.classList.add(newResolvedTheme);
+        setResolvedTheme(newResolvedTheme);
       }
     };
     
@@ -50,7 +63,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, resolvedTheme }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -20,7 +20,7 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden mono-card card-hover">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
           <CardTitle className="text-lg">{event.title}</CardTitle>
@@ -42,7 +42,7 @@ export function EventCard({ event }: EventCardProps) {
       </CardContent>
       <CardFooter className="border-t pt-4 flex justify-between">
         <div className="flex items-center gap-2">
-          <Avatar className={event.isAnonymous ? "avatar-anonymous" : "bg-muted"}>
+          <Avatar className={event.isAnonymous ? "avatar-anonymous" : "bg-mono-light-gray dark:bg-mono-dark-gray"}>
             <AvatarFallback>{event.participantInitials}</AvatarFallback>
           </Avatar>
           <span className="text-sm font-medium">
@@ -50,11 +50,11 @@ export function EventCard({ event }: EventCardProps) {
           </span>
         </div>
         <div className="flex gap-2">
-          <Button size="sm" variant="outline">
+          <Button size="sm" variant="outline" className="android-ripple">
             <CalendarClock className="h-4 w-4 mr-1" />
             Add to Calendar
           </Button>
-          <Button size="sm">
+          <Button size="sm" className="android-ripple">
             <MessageSquare className="h-4 w-4 mr-1" />
             Contact
           </Button>

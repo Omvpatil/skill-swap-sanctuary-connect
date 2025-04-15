@@ -6,15 +6,15 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 7%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 0 0% 9%;
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 15%;
@@ -24,62 +24,62 @@
     --muted-foreground: 0 0% 45%;
 
     --accent: 0 0% 92%;
-    --accent-foreground: 0 0% 9%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 0% 0%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 89%;
     --input: 0 0% 89%;
-    --ring: 0 0% 9%;
+    --ring: 0 0% 0%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 97%;
-    --sidebar-foreground: 0 0% 9%;
-    --sidebar-primary: 0 0% 9%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 92%;
-    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-accent-foreground: 0 0% 0%;
     --sidebar-border: 0 0% 89%;
-    --sidebar-ring: 0 0% 9%;
+    --sidebar-ring: 0 0% 0%;
   }
 
   .dark {
     --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 100%;
 
     --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
     --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
     --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 0% 0%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 0 0% 83%;
     
     --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 0 0% 96%;
-    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 0 0% 83%;
   }
@@ -101,15 +101,40 @@
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-1;
   }
   
   .skill-card {
-    @apply bg-white rounded-xl shadow-md p-5 card-hover border border-gray-200;
+    @apply bg-white rounded-xl shadow-md p-5 card-hover border border-gray-200 dark:bg-mono-dark-gray dark:border-mono-medium-gray;
   }
   
   .avatar-anonymous {
     @apply bg-black text-white;
+  }
+  
+  /* Monochrome utility classes */
+  .mono-border {
+    @apply border-mono-medium-gray dark:border-mono-dark-gray;
+  }
+  
+  .mono-bg {
+    @apply bg-mono-white dark:bg-mono-dark-gray;
+  }
+  
+  .mono-text {
+    @apply text-mono-black dark:text-mono-white;
+  }
+  
+  .mono-card {
+    @apply bg-mono-white dark:bg-mono-dark-gray border border-mono-light-gray dark:border-mono-medium-gray shadow-sm;
+  }
+  
+  .mono-button {
+    @apply bg-mono-black text-mono-white hover:bg-mono-dark-gray dark:bg-mono-white dark:text-mono-black dark:hover:bg-mono-light-gray;
+  }
+  
+  .mono-button-outline {
+    @apply border border-mono-black text-mono-black hover:bg-mono-light-gray dark:border-mono-white dark:text-mono-white dark:hover:bg-mono-dark-gray;
   }
   
   /* Android-specific improvements */
@@ -152,11 +177,11 @@
     }
     
     .android-message-sent {
-      @apply android-message-bubble bg-black text-white ml-auto;
+      @apply android-message-bubble bg-mono-black text-mono-white ml-auto;
     }
     
     .android-message-received {
-      @apply android-message-bubble bg-gray-100 mr-auto;
+      @apply android-message-bubble bg-mono-light-gray mr-auto;
     }
     
     .android-bottom-bar {

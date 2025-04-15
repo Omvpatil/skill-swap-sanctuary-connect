@@ -33,11 +33,11 @@ export function CommunityPost({ post }: CommunityPostProps) {
   };
   
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden mono-card card-hover">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-3">
-            <Avatar className={post.anonymous ? "avatar-anonymous" : "bg-muted"}>
+            <Avatar className={post.anonymous ? "avatar-anonymous" : "bg-mono-light-gray dark:bg-mono-medium-gray"}>
               <AvatarFallback>{post.authorInitials}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
@@ -62,18 +62,18 @@ export function CommunityPost({ post }: CommunityPostProps) {
             variant="ghost" 
             size="sm" 
             onClick={handleLike}
-            className={liked ? "text-accent" : ""}
+            className={`android-ripple ${liked ? "text-mono-black dark:text-mono-white" : ""}`}
           >
             <Heart className="h-4 w-4 mr-1" fill={liked ? "currentColor" : "none"} />
             {likes}
           </Button>
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="android-ripple">
             <MessageSquare className="h-4 w-4 mr-1" />
             {post.comments}
           </Button>
         </div>
         {post.anonymous && (
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="android-ripple">
             <User className="h-4 w-4 mr-1" />
             Request Profile
           </Button>

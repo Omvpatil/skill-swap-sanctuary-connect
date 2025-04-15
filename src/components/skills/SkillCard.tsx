@@ -39,12 +39,12 @@ export function SkillCard({ skill }: SkillCardProps) {
           <span className="text-sm font-medium">Anonymous User</span>
         </div>
         <div className="flex gap-2">
-          <Button size="sm" variant="outline">
-            <Calendar className="h-4 w-4" />
+          <Button size="sm" variant="outline" className="android-ripple">
+            <Calendar className="h-4 w-4 mr-1" />
             Schedule
           </Button>
-          <Button size="sm">
-            <MessageSquare className="h-4 w-4" />
+          <Button size="sm" className="android-ripple">
+            <MessageSquare className="h-4 w-4 mr-1" />
             Connect
           </Button>
         </div>
