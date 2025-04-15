@@ -17,7 +17,7 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-destructive-foreground",
         outline: "text-foreground",
         skill:
-          "border-transparent bg-skill-purple text-white",
+          "border-transparent bg-black text-white",
         achievement:
           "border-transparent bg-skill-blue text-white",
       },

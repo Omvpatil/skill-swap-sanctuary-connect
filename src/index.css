@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -107,6 +108,37 @@
   }
   
   .avatar-anonymous {
-    @apply bg-gradient-to-r from-skill-purple/80 to-skill-blue/80 text-white;
+    @apply bg-gradient-to-r from-black/80 to-skill-blue/80 text-white;
+  }
+  
+  /* Android-specific improvements */
+  @media (pointer: coarse) {
+    .touch-target {
+      @apply min-h-[48px] min-w-[48px];
+    }
+    
+    button, 
+    a, 
+    input[type="button"], 
+    input[type="submit"] {
+      @apply touch-target;
+    }
+    
+    .android-tap-highlight {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .android-ripple {
+      @apply relative overflow-hidden;
+    }
+    
+    .android-ripple::after {
+      content: "";
+      @apply absolute inset-0 bg-black/5 opacity-0 pointer-events-none transition-opacity;
+    }
+    
+    .android-ripple:active::after {
+      @apply opacity-100;
+    }
   }
 }
