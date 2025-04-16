@@ -17,18 +17,19 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-destructive-foreground",
         outline: "text-foreground",
         skill:
-          "border-transparent bg-mono-black text-mono-white",
+          "border-transparent bg-mono-black text-mono-white dark:bg-mono-white dark:text-mono-black",
         achievement:
-          "border-transparent bg-mono-black text-mono-white",
+          "border-transparent bg-mono-black text-mono-white dark:bg-mono-white dark:text-mono-black",
         success:
-          "border-transparent bg-mono-black text-mono-white",
+          "border-transparent bg-mono-black text-mono-white dark:bg-mono-white dark:text-mono-black",
         warning:
-          "border-transparent bg-mono-dark-gray text-mono-white",
+          "border-transparent bg-mono-dark-gray text-mono-white dark:bg-mono-light-gray dark:text-mono-black",
       },
       size: {
         default: "px-2.5 py-0.5 text-xs",
         sm: "px-2 py-0.5 text-[10px]",
-        lg: "px-3 py-1 text-sm"
+        lg: "px-3 py-1 text-sm",
+        xl: "px-4 py-1.5 text-base" // Added larger size for mobile
       }
     },
     defaultVariants: {
